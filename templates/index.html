@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>VSOW Generator</title>
+    <script>
+        function addRow() {
+            const container = document.getElementById('data-container');
+            const template = document.getElementById('row-template').content.cloneNode(true);
+            container.appendChild(template);
+        }
+
+        function removeRow(button) {
+            button.parentNode.remove();
+        }
+    </script>
+</head>
+<body>
+    <h1>Upload Template and Input Data</h1>
+    <form action="/" method="post" enctype="multipart/form-data">
+        <label for="template">Template File:</label>
+        <input type="file" name="template" required><br><br>
+        <label for="output_dir">Output Directory:</label>
+        <input type="text" name="output_dir" required placeholder="Enter output directory path"><br><br>
+
+        <div id="data-container">
+            <div>
+                <button type="button" onclick="addRow()">Add Document</button>
+            </div>
+            <template id="row-template">
+                <div>
+                    <br><br>
+                    Document Name: <input type="text" name="name[]" required><br><br>
+                    Vendor Company: <input type="text" name="company[]" required><br><br>
+                    Date Agreement: <input type="date" name="date_agreement[]" required><br><br>
+                    Name of the SDM: <input type="text" name="sdm[]" required><br><br>
+                    Customer: <input type="text" name="customer[]" required><br><br>
+                    Start Date: <input type="date" name="start_date[]" required><br><br>
+                    End Date: <input type="date" name="end_date[]" required><br><br>
+                    Hours: <input type="number" name="hours[]" required><br><br>
+                    Rate: <input type="number" name="rate[]" required><br><br>
+                    <button type="button" onclick="removeRow(this)">Remove</button>
+                    <br><br>
+                </div>
+            </template>
+        </div>
+
+        <input type="submit" value="Generate Documents">
+    </form>
+</body>
+</html>
